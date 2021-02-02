@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="../../../inc/img/favicon.png">
+    <link rel="stylesheet" href="../../../inc/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../inc/stripchart.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script type="text/javascript" src="../../../inc/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../inc/jquery.widget.js"></script>
+    <script type="text/javascript" src="../../../inc/jquery.stripchart.js"></script>
+    <script type="text/javascript" src="../../../inc/stripchart.js"></script>
+    <script type="text/javascript" src="../../../inc/popper.min.js"></script>
+    <script type="text/javascript" src="../../../inc/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <title>Fabric Metrics</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark mb-3" style="background-color: #336;">
+      <a class="navbar-brand" href="#">
+        <img src="../../../inc/img/inmon.svg" height="30" class="d-inline-block align-top">
+        Fabric Metrics
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#" data-target="traffic">Traffic</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#" data-target="ports">Ports</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#" data-target="help">Help</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="container" role="main">
+      <section id="traffic">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Total Traffic</h5>
+              <div class="card-body">
+                <div id="elephants-mice" class="trend"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Busy Links</h5>
+              <div class="card-body">
+                <div id="busy-links" class="trend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Elephant Flows</h5>
+              <div class="card-body">
+                <div id="elephant-flows" class="trend"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Elephant Arrivals</h5>
+              <div class="card-body">
+                <div id="elephant-arrivals" class="trend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Errors</h5>
+              <div class="card-body">
+                <div id="errors" class="trend"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Discards</h5>
+              <div class="card-body">
+                <div id="discards" class="trend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="ports">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Utilization In</h5>
+              <div class="card-body">
+                <div id="utilizationin" class="trend"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Utilization Out</h5>
+              <div class="card-body">
+                <div id="utilizationout" class="trend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Discards In</h5>
+              <div class="card-body">
+                <div id="discardsin" class="trend"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Discards Out</h5>
+              <div class="card-body">
+                <div id="discardsout" class="trend"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Errors In</h5>
+              <div class="card-body">
+                <div id="errorsin" class="trend"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-3">
+              <h5 class="card-header">Errors Out</h5>
+              <div class="card-body">
+                <div id="errorsout" class="trend"></div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </section>
+      <section id="help">
+        <p><em>Fabric Metrics</em> provides real-time monitoring of traffic in leaf and spine fabric.
+        The application relies on standard <a href="https://sflow-rt.com/agents.php">sFlow agents</a> in the switches to provide measurements.</p>
+        <h4>Topology</h4>
+        <p><a href="https://sflow-rt.com/topology.php">Topology</a> is required. Install the <a href="https://github.com/sflow-rt/topology">topology application</a>
+        to persist the topology setting and verify that all links are being monitored.</p>
+        <h4>Monitoring Traffic</h4>
+        <p>The following charts under the <em>Traffic</em> tab display key metrices:</p>
+        <ul>
+          <li><strong>Total Traffic</strong> Traffic entering edge ports broken out by large &quot;Elephants&quot; and small &quot;Mice&quot; flows</li>
+          <li><strong>Busy Links</strong> Number of highly utilized links, classified by large / small flow traffic mix</li>
+          <li><strong>Elephant Flows</strong> Number of large flows</li>
+          <li><strong>Elephant Arrivals</strong> Rate of new large flow arrivals and departures</li>
+          <li><strong>Errors</strong> Total errors across ports in topology</li>
+          <li><strong>Discards</strong> Total discards across ports in topology</li>
+        </ul>
+        <p><strong>Note:</strong> Click on peaks in the charts to see values at that time.</p>
+        <h4>Monitoring Ports</h4>
+        <p>The following charts under the <em>Ports</em> tab display key metric:</p>
+        <ul>
+          <li><strong>Utilization In/Out</strong> Top switch ports by ingress and egress utilization</li>
+          <li><strong>Discards In/Out</strong> Top switch ports by ingress and egress packet discard rates</li>
+          <li><strong>Errors In/Out</strong> Top switch ports by ingress and egress packet error rates</li>
+        </ul>
+        <p><strong>Note:</strong> Click on peaks in the charts to see values at that time.</p>
+        <h4>REST API</h4>
+        <p>The Fabric Metrics user interface is built on a set of REST API calls that can be used to retrieve data.</p>
+        <table class="table table-striped table-bordered table-sm table-responsive-md">
+          <thead class="thead-light"><tr><th>URL</th><th>Operations</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><a href="../scripts/metrics.js/metric/json">scripts/metrics.js/metric/json</a></td><td>GET</td><td>Latest metric values</td></tr>
+            <tr><td>scripts/metrics.js/metric/{name}/json</td><td>GET</td><td>Latest value of named metric</td></tr>
+            <tr><td><a href="../scripts/metrics.js/prometheus/txt">scripts/metrics.js/prometheus/txt</a></td><td>GET</td><td>Prometheus format metrics</td></tr>
+          </tbody>
+        </table>
+        <h4>Startup Settings</h4>
+        <p>See <a href="https://sflow-rt.com/reference.php#properties">System Properties</a> for information on configuring startup settings.</p>
+        <div class="table-responsive-xl">
+          <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-light"><tr><th>Property</th><th>Default</th><th>Description</th></tr><thead>
+            <tbody>
+              <tr><td>fabric-metrics.threshold.elephant</td><td>10</td><td>Link utilization defining elephant flow</td></tr>
+              <tr><td>fabric-metrics.threshold.link</td><td>80</td><td>Link utilization defining busy link</td></tr>
+              <tr><td>fabric-metrics.threshold.timeout</td><td>1</td><td>Seconds of threshold hysteresis</td></tr>
+              <tr><td>fabric-metrics.t</td><td>2</td><td>Flow smoothing (in seconds)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer class="footer page-footer border-top mt-3">
+       <div class="footer-copyright text-center py-2">
+         <small class="text-muted">Copyright &copy; 2021 InMon Corp. ALL RIGHTS RESERVED</small>
+       </div>
+    </footer>
+  </body>
+</html>
